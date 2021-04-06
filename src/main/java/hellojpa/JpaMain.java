@@ -5,7 +5,17 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import java.util.List;
-
+/*
+* EntityManagerFactory 를 통해서 고객의 요청이 올때마다 EntityManager 생성한다.
+* 역속성 컨텍스트란 엔티티를 영구 저장하는 환경
+* 영속성 컨텍스트는 논리적인 개념 / 눈에 보이지 않는다 / 엔티티 매니저를 통해서 영속성 컨텍스트에 접근한다.
+* 엔티티 매니저와 영속성 컨텍스트가 1:1 EntitiManger -> PersistenceContext 엔티티 매니저 안에 영속성 컨텍스트 눈에 보이지 않게 안에 생성된다.
+* 엔티티의 생명주기
+* - 비영속 : 영속성 컨텍스트와 전혀 관계가 없는 새로운 상태
+* - 영속 : 영속성 컨텍스트에 관리 되는 상태 / persist 하면 된다.
+* - 준영속 : 영속성 컨텍스트에 저장되었다가 분리된 상태
+* - 삭제 : 삭제된 상태
+* */
 public class JpaMain {
 
     public static void main(String[] args){
@@ -22,9 +32,12 @@ public class JpaMain {
         try {
             /*
             // insert
+            // 비영속
             Member member = new Member();
             member.setId(4L);
             member.setName("HelloB");
+
+            // 영속
             em.persist(member); // member 를 저장한다
             // select
             Member findMember = em.find(Member.class , 1L);
@@ -53,8 +66,8 @@ public class JpaMain {
             *
             * */
             List<Member> result =  em.createQuery("select m from Member as m", Member.class)
-                    .setFirstResult(0)
-                    .setMaxResults(1)
+                    .setFirstResult(1)
+                    .setMaxResults(2)
                     .getResultList();
 
             for(Member member :result){
