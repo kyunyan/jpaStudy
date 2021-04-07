@@ -11,12 +11,14 @@ public class JpaMain {
     public static void main(String[] args){
         // persistance 등록된 name 을 등록한다.
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("hello");
+
         // 웹서버에서 올라갈때 하나만 생성된다 디비당 하나
+
         EntityManager em = emf.createEntityManager();      // create entity manger 를 꺼내야된다.
         // 고객의 요청이 올때마다 생성됫다가 없어졋다가 한다. 스레드 간의 공유 절대 x(사용하고 버려야된다.)
         // jqp 모든 데이터 변경은 트렌젝션 안에서 해야된다.
-
         // 로딩 시킬때 단 하나만 생성시켜야된다.
+
         EntityTransaction tx = em.getTransaction();    // 트랜잭션 단위에서 실행시켜야된다
         tx.begin();
         try {
