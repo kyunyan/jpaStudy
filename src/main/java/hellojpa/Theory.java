@@ -116,6 +116,52 @@ public class Theory {
     * 트랜잭션 커밋 - 플러시 자동 호출
     * JPQL 쿼리 실행 - 플러시 자동 호출
     *
+    * Member member = new Member(100L , "member23");
+    * em.persist(member);
+    *
+    * em.flush();   // 쿼리가 즉시 실행된다.
+    * // flush 를한다고 1차캐시 를 날리는것이 아니라 쓰기 지연 SQL 저장소에 있는 것만 데이터 베이스에 반영이되는 과정이다.
+    *
+    * jqpl 쿼리 실행시 플러시가 자동 실행된다.
+    *
+    * 플러시는
+    * - 영속성 컨텍스를 비우는게 아니다
+    * - 영속성 컨텍스트의 변경 내용을 데이터베이스에 동기화하낟.
+    * - 트랜잭션이라는 작업 단위가 중요 -> 커밋 직전에만 동기화 하면 됨.
+    *
+    * 준영속 상태
+    * 영속 -> 준영속
+    * em.persist()  1차 캐시에 있는 상태는  영속상태이다.
+    * em.find() 영속성 컨텍스트에 없으면 찾기때문에 영속상태가된다.
+    *
+    * - 영속 상태의 엔티티 영속성 컨텍스트에서 분리
+    * - 영속성 컨텍스트가 제공하는 기능을 사용하지 못함
+    *
+    * 준영속 상태로 만드는 방법
+    * em.detach(entity) - 특정 엔티티만 중영속 상태로 전환
+    * em.clear();  - 영속성 컨텍스트를 완전히 초기화
+    * em.close(); - 영속성 컨텍스트를 종료
+    *
+    * Member member = em.find(Member.class , 150L)
+    * member.setNAme("AAAAA");
+    *
+    * em.detach(member);        // 이렇게 하면 update 쿼리 실행하지 않는다.
+    *
+    *
+    * 엔티티 매핑소개
+    * 객체와 테이블 매핑 : @Entity, @Table
+    * 필드와 컬럼 매핑 : @Column
+    * 기본 키 매핑 : @Id
+    * 연관관계 매핑 : @ManyToOne, @JoinColumn
+    *
+    * @Entity
+    * @Entity 가 붙은 클래스는 JPA가 관리, 인테티라 한다.
+    * JPA를 사용해서 테이블과 매핑할 클래스는 @Entity 필수
+    *
+    * 주의
+    * 기본생성자 필수 (파라미터가 없는 public 또는 protected 생성자)
+    * final 클래스 , enum, interface in
+    *
     *
     *
     *
