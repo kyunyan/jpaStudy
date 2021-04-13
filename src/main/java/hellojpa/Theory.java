@@ -162,7 +162,31 @@ public class Theory {
     * 기본생성자 필수 (파라미터가 없는 public 또는 protected 생성자)
     * final 클래스 , enum, interface in
     *
+    * @Entity 정리
+    * 속성 : name
     *
+    * JPA에서 사용할 엔티티 이름을 지정한다.
+    * 기본값 : 클래스 이름을 그대로 사용(예 : Member)
+    * 같은 클래스 이름이 없으면 가급적 기본값 사용
+    *
+    * @Table
+    * name : 매핑할 테이블 이름
+    * catalog : 데이터베이스 catalog 매핑
+    * schema : 데이터베이스 schema 매핑
+    *
+    * hibernate.hbm2ddl.auto
+    * create - 기존테이블 삭제후 다시 생성
+    * create-drop - 기존 테이블 삭제후 다시생성후 다시 삭제
+    * update - 변경 부분만
+    * validate - 엔티티와 테이블이 정상 매핑되었는지 확인해준다.
+    * none - 사용되지 않음
+    *
+    * 운영장비에는 절대 create , create-drop , update 사용하면 안된다.
+    * 개발 초기 단계에는 create 또는 update
+    *
+    * 테스트 서버는 update 또는 validate
+    *
+    * 스테이징과 운영서버는 validate 또는 none
     *
     *
     *

@@ -1,28 +1,34 @@
 package hellojpa;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Date;
 
 @Entity
-public class Member {
+@Table(uniqueConstraints = {@UniqueConstraint(name="NAME_AGE_UNIQUE" , columnNames = {"NAME"})})
+public class  Member {
     
     @Id     // pk 등록
     private Long id;
+
+    // DDL 생성 기능은 DDL을 자동 생성할때만 사용되고 JPA 실행 로직에는 형향을 주지 않는다.
+    @Column(unique = true, length = 10, name = "name")
     private String name;
 
-    public Long getId() {
-        return id;
-    }
+    private Integer age;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    @Enumerated(EnumType.STRING)
+    private RoleType roleType;
 
-    public String getName() {
-        return name;
-    }
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createDate;
 
-    public void setName(String name) {
-        this.name = name;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date lastModifiedDate;
+
+    @Lob
+    private String description;
+
+    public Member(){
+
     }
 }
