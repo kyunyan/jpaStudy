@@ -67,7 +67,8 @@ public class JpaMain {
             *  jpql을 한마디로 정의하면 객체지향 SQL
             *
             * */
-            List<Member> result =  em.createQuery("select m from Member as m", Member.class)
+            /*
+            List<Member1> result =  em.createQuery("select m from Member1 as m", Member1.class)
                     .setFirstResult(1)
                     .setMaxResults(2)
                     .getResultList();
@@ -75,6 +76,17 @@ public class JpaMain {
             for(Member member :result){
                 System.out.println("Member.name = "+member.getName());
             }
+            */
+
+            Member member = new Member();
+
+            // member.setId("ID_A");
+            member.setName("test1");
+
+            System.out.println("===============");
+            em.persist(member);     // 원래는 commit 할때 쿼리가 날라가는데 이 키가 jenerate value 일때만 여기서 insert 쿼리를 날린다.
+            System.out.println(member.getId());
+            System.out.println("===============");
 
             tx.commit();
         } catch (Exception e) {
