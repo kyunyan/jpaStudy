@@ -14,7 +14,7 @@ import java.util.Date;
         pkColumnValue = "MEMBER_SEQ" , allocationSize = 1
 )
  */
-public class Member {
+public class Member2 {
     /*
     *   집접할당 : @Id
     *   자동생성 : @GeneratedValue
@@ -59,7 +59,7 @@ public class Member {
     @Column(length = 10, name = "name", nullable = false)      // 컬럼매핑
     private String name;
 
-    public Member(){
+    public Member2(){
 
     }
 

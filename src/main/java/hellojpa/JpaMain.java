@@ -4,7 +4,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
-import java.util.List;
+
 /*
 * EntityManagerFactory 를 통해서 고객의 요청이 올때마다 EntityManager 생성한다.
 * 역속성 컨텍스트란 엔티티를 영구 저장하는 환경
@@ -78,14 +78,14 @@ public class JpaMain {
             }
             */
 
-            Member member = new Member();
+            Member2 member2 = new Member2();
 
             // member.setId("ID_A");
-            member.setName("test1");
+            member2.setName("test1");
 
             System.out.println("===============");
-            em.persist(member);     // 원래는 commit 할때 쿼리가 날라가는데 이 키가 jenerate value 일때만 여기서 insert 쿼리를 날린다.
-            System.out.println(member.getId());
+            em.persist(member2);     // 원래는 commit 할때 쿼리가 날라가는데 이 키가 jenerate value 일때만 여기서 insert 쿼리를 날린다.
+            System.out.println(member2.getId());
             System.out.println("===============");
 
             tx.commit();
