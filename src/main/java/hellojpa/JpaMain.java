@@ -16,6 +16,7 @@ import javax.persistence.Persistence;
 * - 준영속 : 영속성 컨텍스트에 저장되었다가 분리된 상태
 * - 삭제 : 삭제된 상태
 * */
+/*
 public class JpaMain {
 
     public static void main(String[] args){
@@ -31,7 +32,7 @@ public class JpaMain {
 
         EntityTransaction tx = em.getTransaction();    // 트랜잭션 단위에서 실행시켜야된다
         tx.begin();
-        try {
+        try {*/
             /*
             // insert
             // 비영속
@@ -77,7 +78,7 @@ public class JpaMain {
                 System.out.println("Member.name = "+member.getName());
             }
             */
-
+/*
             Member2 member2 = new Member2();
 
             // member.setId("ID_A");
@@ -98,5 +99,41 @@ public class JpaMain {
         emf.close();
 
 
+    }
+}
+*/
+
+public class JpaMain {
+
+    public static void main(String[] args) {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("hello");
+
+        EntityManager em = emf.createEntityManager();
+
+        EntityTransaction tx = em.getTransaction();
+        tx.begin();
+        try{
+            Team team = new Team();
+            team.setName("TeamA");
+            em.persist(team);
+
+            Member3 member = new Member3();
+            member.setUsername("memeber3");
+            member.setTeam(team);
+            em.persist(member);
+
+            Member3 findMember = em.find(Member3.class, member.getId());
+            Team findTeam = findMember.getTeam();
+
+            System.out.println("findTeam = "+findTeam.getName());
+
+            tx.commit();
+        }catch (Exception e){
+            tx.rollback();
+        }finally {
+            em.close();
+        }
+
+        emf.close();
     }
 }
