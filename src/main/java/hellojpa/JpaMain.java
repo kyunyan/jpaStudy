@@ -4,6 +4,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import java.util.List;
 
 /*
 * EntityManagerFactory 를 통해서 고객의 요청이 올때마다 EntityManager 생성한다.
@@ -113,19 +114,26 @@ public class JpaMain {
         EntityTransaction tx = em.getTransaction();
         tx.begin();
         try{
+
             Team team = new Team();
             team.setName("TeamA");
             em.persist(team);
 
             Member3 member = new Member3();
             member.setUsername("memeber3");
-            member.setTeam(team);
+            member.changeTeam(team);
             em.persist(member);
 
-            Member3 findMember = em.find(Member3.class, member.getId());
-            Team findTeam = findMember.getTeam();
+            //em.flush();
+            //em.clear();
 
-            System.out.println("findTeam = "+findTeam.getName());
+            Member3 findMember = em.find(Member3.class, member.getId());
+
+            List<Member3> members = findMember.getTeam().getMembers();
+
+            for(Member3 m : members){
+                System.out.println("m = "+m.getUsername());
+            }
 
             tx.commit();
         }catch (Exception e){
