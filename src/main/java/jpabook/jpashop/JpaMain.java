@@ -1,3 +1,4 @@
+/*
 package jpabook.jpashop;
 
 import hellojpa.Member2;
@@ -41,3 +42,4 @@ public class JpaMain {
 
     }
 }
+*/

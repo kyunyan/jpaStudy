@@ -1,3 +1,4 @@
+/*
 package hellojpa;
 
 import javax.persistence.*;
@@ -7,15 +8,18 @@ import java.util.Date;
 
 @Entity
 @Table(uniqueConstraints = {@UniqueConstraint(name="NAME_AGE_UNIQUE" , columnNames = {"NAME"})})
+*/
 /*
 @TableGenerator(
         name = "MEMBER_SEQ_GENERATOR" ,
         table = "MY_SEQUENCES" ,
         pkColumnValue = "MEMBER_SEQ" , allocationSize = 1
 )
- */
+ *//*
+
 public class Member2 {
-    /*
+    */
+/*
     *   집접할당 : @Id
     *   자동생성 : @GeneratedValue
     *    - IDENTITY : 데이터베이스 위임 MYSQL
@@ -45,14 +49,17 @@ public class Member2 {
     *  - 권장 : Long형 + 대체키 + 키 생성전략 사용
     *
     *
-    * */
+    * *//*
+
     @Id     // pk 등록
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    /*
+    */
+/*
     @GeneratedValue(strategy = GenerationType.TABLE ,
                         generator = "MEMBER_SEQ_GENERATOR")
 
-     */
+     *//*
+
     private Long id;
 
     // DDL 생성 기능은 DDL을 자동 생성할때만 사용되고 JPA 실행 로직에는 형향을 주지 않는다.
@@ -79,3 +86,4 @@ public class Member2 {
         this.name = name;
     }
 }
+*/

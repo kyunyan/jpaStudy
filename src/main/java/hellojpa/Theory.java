@@ -1,7 +1,9 @@
+/*
 package hellojpa;
 
 public class Theory {
-    /*
+    */
+/*
     * 영속성 관리
     * jpa 에서 가장 중요한 2가지
     * - 객체와 관계형 데이터 베이스 매핑하기
@@ -217,5 +219,7 @@ public class Theory {
     *
     *
     *
-    * */
+    * *//*
+
 }
+*/

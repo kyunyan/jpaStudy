@@ -1,3 +1,4 @@
+/*
 package hellojpa;
 
 import javax.persistence.*;
@@ -23,7 +24,8 @@ public class Team {
     // 테이블의 양방향 관계
     // 테이블은 왜래키 하나로 두 테이블의 연관관계를 가짐
     // TEAM_ID 왜래키 하나로 양방향 연관관계를 가질수있다.
-    /*
+    */
+/*
     * 연관관계의 주인은
     * 양방향 매핑 규칙
     *
@@ -37,7 +39,8 @@ public class Team {
     * 왜래키가 있는 곳을 주인으로 정해라라.
     * 
     * 여기서는 Memeber.team이 주인
-    * */
+    * *//*
+
 
 
    @OneToMany(mappedBy = "team")       // 모랑 연결되 있지
@@ -67,3 +70,4 @@ public class Team {
         this.name = name;
     }
 }
+*/

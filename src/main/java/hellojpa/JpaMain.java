@@ -4,7 +4,47 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
-import java.util.List;
+
+public class JpaMain {
+    public static void main(String[] args){
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("hello"); // 파라메터로는 persistence unit name 을 넘겨야 한다.
+        // EntityManagerFactory 어플리 케이션 로딩시점에 딱 하나만 만들어야 된다.
+        EntityManager em = emf.createEntityManager();   // 고객이 들어와서 행위를 하고 나갈때 디비 커넥션을 날리고 커넥션을 종료시키는 작업 할때마다 만들어 주어야 한다.
+
+        EntityTransaction tx = em.getTransaction();
+        tx.begin();
+        // Jpa 에서는 트랜잭션이라는 모든 변경하는 데이터는 트렌젝션 안에서 해줘야 한다.
+
+        try {/*
+            // 신규
+            Member member = new Member();
+            member.setId(1L);
+            member.setName("HelloA");
+
+            em.persist(member);*/
+
+            // 조회
+            // 엔티티 매니저를 자바 켈렉션으로 사용한다.
+            Member findMember = em.find(Member.class, 1L);
+            System.out.println("findMember.id : "+findMember.getId());
+            System.out.println("findMember.Name : "+findMember.getName());
+
+            // 삭제
+            em.remove(findMember);
+
+            // 수정
+            // 자바 컬렉션 처럼 사용하기때문에 persist 메소드를 사용하지 않더라도 update 쿼리가 나간다.
+            findMember.setName("HelloJPA");
+            tx.commit();        // 커밋
+        }catch (Exception e){
+            tx.rollback();      // 애러가 나면 rollback;
+        }finally {
+            em.close();
+        }
+
+        emf.close();
+    }
+}
 
 /*
 * EntityManagerFactory 를 통해서 고객의 요청이 올때마다 EntityManager 생성한다.
@@ -103,7 +143,7 @@ public class JpaMain {
     }
 }
 */
-
+/*
 public class JpaMain {
 
     public static void main(String[] args) {
@@ -145,3 +185,5 @@ public class JpaMain {
         emf.close();
     }
 }
+
+*/

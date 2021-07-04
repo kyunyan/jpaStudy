@@ -1,3 +1,4 @@
+/*
 package hellojpa;
 
 import javax.persistence.*;
@@ -5,10 +6,11 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
 
-@Entity
+@Entity             // JPA 를 사용하는 애구나 하는 어노테이션
 @Table(uniqueConstraints = {@UniqueConstraint(name="NAME_AGE_UNIQUE" , columnNames = {"NAME"})})
 public class Member1 {
-    /*
+    */
+/*
     * @Column
     *
     * name : 필드와 매핑할 테이블의 컬럼이름
@@ -25,7 +27,8 @@ public class Member1 {
     * @Temporal
     * 날짜 타입을 매핑할때 사용한다
     * 참고 : LocalDate, LocalDateTime을 사용 할때는 생략 가능 (최신 하이버네이트 지원)
-    * */
+    * *//*
+
     @Id     // pk 등록
     private Long id;
 
@@ -57,3 +60,4 @@ public class Member1 {
 
     }
 }
+*/

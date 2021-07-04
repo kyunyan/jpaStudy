@@ -1,3 +1,4 @@
+/*
 package jpabook.jpashop.domain;
 
 import javax.persistence.*;
@@ -59,3 +60,4 @@ public class Member {
         this.zipcode = zipcode;
     }
 }
+*/

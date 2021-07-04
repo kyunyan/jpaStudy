@@ -1,3 +1,4 @@
+/*
 package jpabook.jpashop.domain;
 
 import javax.persistence.Column;
@@ -48,3 +49,4 @@ public class Item {
         this.sockQuantity = sockQuantity;
     }
 }
+*/
